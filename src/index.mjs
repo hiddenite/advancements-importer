@@ -5,10 +5,18 @@ import path from 'path';
 import util from 'util';
 import _ from 'lodash';
 
+const readdir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
 
 async function main() {
-	await importFile('./545dbe5e-d0c5-46c7-bef8-5d758d2b0a20.json');
+	await importFolder('./advancements/')
+}
+
+async function importFolder(folder) {
+	const files = await readdir(folder);
+	for (const file of files) {
+		await importFile(path.join(folder, file));
+	}
 }
 
 async function importFile(filename) {
