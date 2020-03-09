@@ -1,0 +1,12 @@
+{
+  "name": "advancements-importer",
+  "version": "1.0.0",
+  "description": "Import advancements from Minecraft save files to MySQL.",
+  "main": "src/index.mjs",
+  "author": "Hiddenite",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.24.0",
+    "mysql": "^2.18.1"
+  }
+}
