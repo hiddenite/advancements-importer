@@ -6,6 +6,7 @@
   "author": "Hiddenite",
   "license": "ISC",
   "dependencies": {
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "mysql": "^2.18.1"
   }
