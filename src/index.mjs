@@ -1,6 +1,6 @@
 import fs from 'fs';
 import moment from 'moment';
-import mysql from 'mysql';
+import mysql from 'mysql2/promise';
 import path from 'path';
 import util from 'util';
 import _ from 'lodash';
@@ -8,8 +8,24 @@ import _ from 'lodash';
 const readdir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
 
+const STATEMENT = 'INSERT IGNORE INTO atf_achievements (player_id, achievement_id, unlock_date, season) VALUES (?, ?, ?, ?)';
+const SEASON = 2;
+
+let connection = null;
+let preparedStatement = null;
+
 async function main() {
+	connection = await mysql.createConnection({
+		host: process.env.MYSQL_HOST,
+		user: process.env.MYSQL_USER,
+		password: process.env.MYSQL_PASSWORD,
+		database: process.env.MYSQL_DATABASE
+	});
+
+	preparedStatement = await connection.prepare(STATEMENT);
+
 	await importFolder('./advancements/')
+	await connection.end();
 }
 
 async function importFolder(folder) {
@@ -45,6 +61,7 @@ async function importPlayer(playerId, advancements) {
 		}
 
 		console.log(playerId, advancementKey, unlockDate);
+		await preparedStatement.execute([playerId, advancementKey, unlockDate, SEASON]);
 	}
 }
 

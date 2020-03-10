@@ -5,9 +5,10 @@
   "main": "src/index.mjs",
   "author": "Hiddenite",
   "license": "ISC",
+  "repository": "https://github.com/hiddenite/advancements-importer/",
   "dependencies": {
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "mysql": "^2.18.1"
+    "mysql2": "^2.1.0"
   }
 }
