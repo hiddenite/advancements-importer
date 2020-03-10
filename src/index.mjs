@@ -24,7 +24,7 @@ async function main() {
 
 	preparedStatement = await connection.prepare(STATEMENT);
 
-	await importFolder('./advancements/')
+	await importFolder('./world/advancements/')
 	await connection.end();
 }
 

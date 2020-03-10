@@ -106,5 +106,6 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-# Folder containing the data to import.
-advancements/
+# Folders containing the data to import.
+world/advancements/
+world/stats/

@@ -1,7 +1,7 @@
 {
-  "name": "advancements-importer",
+  "name": "mc-stats-importer",
   "version": "1.0.0",
-  "description": "Import advancements from Minecraft save files to MySQL.",
+  "description": "Import statistics and advancements from Minecraft save files to MySQL.",
   "main": "src/index.mjs",
   "author": "Hiddenite",
   "license": "ISC",
