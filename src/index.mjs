@@ -1,5 +1,6 @@
 import Achievements from './achievements.mjs';
 import mysql from 'mysql2/promise';
+import Statistics from './statistics.mjs';
 
 const SEASON = 1;
 
@@ -15,6 +16,11 @@ async function main() {
 	await achievements.init();
 	await achievements.importFolder('./world/advancements/');
 	await achievements.close();
+
+	const statistics = new Statistics(SEASON, connection);
+	await statistics.init();
+	await statistics.importFolder('./world/stats/');
+	await statistics.close();
 
 	await connection.end();
 }
