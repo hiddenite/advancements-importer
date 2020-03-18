@@ -1,8 +1,8 @@
 import Achievements from './achievements.mjs';
-import mysql from 'mysql2/promise';
+import mysql from 'mysql2/promise.js';
 import Statistics from './statistics.mjs';
 
-const SEASON = 1;
+const SEASON = 2;
 
 async function main() {
 	const connection = await mysql.createConnection({
