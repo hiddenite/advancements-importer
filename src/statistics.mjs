@@ -1,5 +1,5 @@
+import Cache from './cache.mjs';
 import fs from 'fs';
-import moment from 'moment';
 import path from 'path';
 import util from 'util';
 import _ from 'lodash';
@@ -24,10 +24,18 @@ export default class Statistics {
 	}
 
 	async importFolder(folder) {
+		const cache = new Cache('statistics');
+		await cache.load();
+
 		const files = await readdir(folder);
 		for (const file of files) {
-			await this.importFile(path.join(folder, file));
+			const filename = path.join(folder, file);
+			if (await cache.update(filename)) {
+				await this.importFile(filename);
+			}
 		}
+
+		await cache.save();
 	}
 
 	async importFile(filename) {

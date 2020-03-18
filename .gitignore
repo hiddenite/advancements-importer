@@ -109,3 +109,6 @@ dist
 # Folders containing the data to import.
 world/advancements/
 world/stats/
+
+# Cache folder, containing the last modification times.
+cache/
